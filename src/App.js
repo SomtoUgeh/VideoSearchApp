@@ -10,6 +10,10 @@ class App extends Component {
 		selectedVideo: null
 	};
 
+	componentDidMount() {
+		this.getVideos("Avengers");
+	}
+
 	getVideos = term => {
 		youtube
 			.get("/search", {
@@ -19,7 +23,8 @@ class App extends Component {
 			})
 			.then(res => {
 				this.setState({
-					videos: res.data.items
+					videos: res.data.items,
+					selectedVideo: res.data.items[0]
 				});
 			});
 	};
